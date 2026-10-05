@@ -28,6 +28,21 @@
 
 export const projects = [
   {
+    slug: 'claim-investigator',
+    title: 'Claim Investigator',
+    summary:
+      'A Chrome extension that lets you highlight a claim on any webpage and investigate it with external evidence, source tracing, context and uncertainty, instead of relying on an AI-generated verdict alone.',
+    highlights: [
+      'Highlight a claim on any page to start an investigation',
+      'Surfaces evidence, sources and uncertainty rather than a single verdict',
+    ],
+    tech: ['JavaScript', 'HTML', 'CSS', 'Chrome Extension APIs'],
+    context: 'Personal Project',
+    status: 'in-progress',
+    featured: true,
+    github: 'https://github.com/benshi-jar/claim-investigator',
+  },
+  {
     slug: 'practice-ledger',
     title: 'Practice Ledger',
     summary:
