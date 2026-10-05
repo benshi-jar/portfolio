@@ -52,7 +52,7 @@ export const projects = [
     ],
     tech: ['Java', 'Stack ADT', 'JUnit 5'],
     context: 'CSE 214',
-    status: 'in-progress',
+    status: 'complete',
     featured: true,
   },
   {
@@ -76,6 +76,6 @@ export const projects = [
     highlights: ['Previous/next, shuffle and WAV playback', 'Careful pointer updates and edge cases'],
     tech: ['Java', 'Doubly Linked Lists'],
     context: 'CSE 214',
-    status: 'in-progress',
+    status: 'complete',
   },
 ];

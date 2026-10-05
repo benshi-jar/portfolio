@@ -6,7 +6,6 @@ export const currently = {
   items: [
     { label: 'Building', text: 'This portfolio site, in React and Vite' },
     { label: 'Taking', text: 'Data Structures (CSE 214)' },
-    { label: 'Working on', text: 'Block Tracer and Music Playlist for CSE 214' },
     { label: 'Learning', text: 'React and modern web tooling' },
   ],
 };
