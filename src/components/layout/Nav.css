@@ -3,10 +3,18 @@
   top: 0;
   z-index: 10;
   height: var(--nav-height);
-  background: rgba(14, 16, 19, 0.88);
+  background: rgba(14, 16, 19, 0);
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition);
+}
+
+.nav--scrolled {
+  background: rgba(14, 16, 19, 0.9);
+  border-bottom-color: var(--color-border);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--color-border);
 }
 
 .nav__inner {
@@ -39,11 +47,26 @@
 }
 
 .nav__link {
+  position: relative;
   display: block;
   padding: var(--space-1) var(--space-2);
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   border-radius: var(--radius-sm);
+}
+
+/* Underline that grows under the active section's link. */
+.nav__link::after {
+  content: '';
+  position: absolute;
+  left: var(--space-2);
+  right: var(--space-2);
+  bottom: -2px;
+  height: 1px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms var(--ease-out);
 }
 
 .nav__link:hover {
@@ -52,7 +75,11 @@
 }
 
 .nav__link--active {
-  color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.nav__link--active::after {
+  transform: scaleX(1);
 }
 
 .nav__toggle {
@@ -66,10 +93,11 @@
   .nav__toggle {
     display: block;
     margin-left: auto;
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .nav__links {
-    display: none;
     position: absolute;
     top: var(--nav-height);
     left: 0;
@@ -78,14 +106,36 @@
     padding: var(--space-2) var(--space-4) var(--space-4);
     background: var(--color-bg);
     border-bottom: 1px solid var(--color-border);
+    /* Slides down instead of popping in; hidden from tabbing while closed. */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+      opacity var(--transition),
+      transform var(--transition),
+      visibility 0s linear 160ms;
   }
 
   .nav__links--open {
-    display: flex;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--transition),
+      transform var(--transition),
+      visibility 0s;
   }
 
   .nav__link {
     padding: var(--space-3) var(--space-2);
     font-size: var(--text-base);
+  }
+
+  .nav__link::after {
+    display: none;
+  }
+
+  .nav__link--active {
+    color: var(--color-accent);
   }
 }

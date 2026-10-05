@@ -1,27 +1,35 @@
 // ─────────────────────────────────────────────────────────────
 // Projects. To add one, copy this template into the array below.
 // Only slug, title, summary and tech are required. Every other field
-// can be left out entirely (or set to null) and the site handles it.
+// can be left out entirely and the site handles it.
 //
 // {
 //   slug: 'my-project',            // unique, lowercase-with-dashes; future URL: /projects/my-project
 //   title: 'My Project',
-//   summary: 'One sentence about what it is.',
+//   summary: 'One or two sentences about what it is.',
 //   tech: ['React', 'Node'],
 //
 //   // ── optional ──
+//   tagline: 'Short pitch shown on featured cards',
 //   highlights: ['What you built', 'What was hard'],
-//   context: 'Personal Project',   // or 'CSE 214', 'Hackathon', ...
+//   category: 'personal',          // 'personal' | 'coursework'  (powers the filters)
+//   course: 'CSE 214',             // for coursework; shown as the card label
+//   context: 'Hackathon',          // optional label override
+//   languages: ['Java'],           // filter chips; worked out from `tech` if left out
 //   status: 'in-progress',         // 'complete' | 'in-progress' | 'archived'
-//   featured: true,                // featured projects are listed first
+//   featured: true,                // large card at the top of Projects
 //   date: '2026-10',               // 'YYYY' or 'YYYY-MM'
-//   image: '/images/projects/my-project.png',   // file in public/images/projects/
-//   imageAlt: 'Screenshot of ...',
 //   github: 'https://github.com/benshi-jar/my-project',
 //   demo: 'https://...',
-//   details: {                     // reserved for a future project-detail page
+//   images: [                      // files go in public/images/projects/; first one is the card image
+//     { src: '/images/projects/my-project.png', alt: 'What the screenshot shows', caption: '...' },
+//   ],
+//   details: {                     // for a future /projects/my-project page
 //     overview: 'A longer write-up...',
+//     architecture: { image: '/images/projects/my-project-arch.png', caption: '...' },
 //     sections: [{ heading: 'How it works', body: '...' }],
+//     challenges: ['...'],
+//     lessons: ['...'],
 //   },
 // },
 // ─────────────────────────────────────────────────────────────
@@ -30,6 +38,7 @@ export const projects = [
   {
     slug: 'claim-investigator',
     title: 'Claim Investigator',
+    tagline: 'Investigate claims, not verdicts.',
     summary:
       'A Chrome extension that lets you highlight a claim on any webpage and investigate it with external evidence, source tracing, context and uncertainty, instead of relying on an AI-generated verdict alone.',
     highlights: [
@@ -37,14 +46,16 @@ export const projects = [
       'Surfaces evidence, sources and uncertainty rather than a single verdict',
     ],
     tech: ['JavaScript', 'HTML', 'CSS', 'Chrome Extension APIs'],
-    context: 'Personal Project',
+    category: 'personal',
     status: 'in-progress',
     featured: true,
     github: 'https://github.com/benshi-jar/claim-investigator',
+    // No screenshot yet; the card shows a placeholder frame until one is added here.
   },
   {
     slug: 'practice-ledger',
     title: 'Practice Ledger',
+    tagline: 'A desktop log for deliberate coding practice.',
     summary:
       'A desktop tracker for coding sessions with filtering, sorting, editing, and total-time and longest-session analytics.',
     highlights: [
@@ -52,9 +63,18 @@ export const projects = [
       'Input validation and automated save/load checks',
     ],
     tech: ['Java', 'Swing', 'Gson'],
-    context: 'Personal Project',
+    category: 'personal',
     status: 'complete',
     featured: true,
+    github: 'https://github.com/benshi-jar/practice-ledger',
+    images: [
+      {
+        src: '/images/projects/practice-ledger.png',
+        alt: 'Practice Ledger window showing a table of four coding sessions with topic and minutes, and totals at the bottom',
+        width: 883,
+        height: 559,
+      },
+    ],
   },
   {
     slug: 'block-tracer',
@@ -66,9 +86,9 @@ export const projects = [
       'Custom print directives and JUnit 5 edge-case tests',
     ],
     tech: ['Java', 'Stack ADT', 'JUnit 5'],
-    context: 'CSE 214',
+    category: 'coursework',
+    course: 'CSE 214',
     status: 'complete',
-    featured: true,
   },
   {
     slug: 'wordle',
@@ -80,6 +100,7 @@ export const projects = [
       'Tile and keyboard feedback, win/loss tracking',
     ],
     tech: ['Java', 'Swing'],
+    category: 'coursework',
     context: 'AP Computer Science A Final Project',
     status: 'complete',
   },
@@ -90,7 +111,8 @@ export const projects = [
       'A playlist backed by a doubly linked list, with insertion, removal and traversal in both directions.',
     highlights: ['Previous/next, shuffle and WAV playback', 'Careful pointer updates and edge cases'],
     tech: ['Java', 'Doubly Linked Lists'],
-    context: 'CSE 214',
+    category: 'coursework',
+    course: 'CSE 214',
     status: 'complete',
   },
 ];

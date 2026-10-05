@@ -1,0 +1,165 @@
+.now-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.now-bar__live {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+}
+
+.now-bar__dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.now-grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 720px) {
+  .now-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .now-tile--building {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1000px) {
+  .now-grid {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+
+  .now-tile--building {
+    grid-column: auto;
+  }
+}
+
+.now-tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: border-color var(--transition);
+}
+
+.now-tile:hover {
+  border-color: var(--color-border-strong);
+}
+
+.now-tile__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.now-tile__name {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--color-accent);
+}
+
+.now-tile__count {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+}
+
+/* Building */
+.now-building {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.now-building__item {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.now-building__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-3);
+}
+
+.now-building__title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+.now-building__title:hover {
+  color: var(--color-accent-strong);
+}
+
+.now-building__note {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+/* Taking */
+.now-courses {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.now-courses__item {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.now-courses__code {
+  justify-self: start;
+  padding: 0.05rem 0.45rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  border-radius: var(--radius-sm);
+}
+
+.now-courses__name {
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+/* Learning */
+.now-learning {
+  display: grid;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+.now-learning li::before {
+  content: '> ';
+  color: var(--color-accent);
+}

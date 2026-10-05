@@ -16,6 +16,7 @@ html {
 
 body {
   background: var(--color-bg);
+  font-variant-numeric: tabular-nums;
   color: var(--color-text);
   font-family: var(--font-sans);
   font-size: var(--text-base);
@@ -86,7 +87,9 @@ button {
   *,
   *::before,
   *::after {
-    transition: none !important;
-    animation: none !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
   }
 }

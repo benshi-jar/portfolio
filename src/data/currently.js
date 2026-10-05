@@ -1,11 +1,12 @@
 // What you're doing right now. Update `updated` whenever you change it.
-// link is optional.
+//
+// building: project slugs from projects.js (title, status and tech come from there)
+// taking:   course codes from education.js (official names come from there)
+// learning: short labels
 
 export const currently = {
   updated: '2026-10',
-  items: [
-    { label: 'Building', text: 'Claim Investigator, a Chrome extension for investigating claims with real evidence' },
-    { label: 'Taking', text: 'Data Structures (CSE 214), Applied Linear Algebra (AMS 210), and Discrete Math (CSE 113)'},
-    { label: 'Learning', text: 'JavaScript, Chrome extension development, and data structures' },
-  ],
+  building: [{ project: 'claim-investigator', note: 'A Chrome extension for investigating claims with real evidence' }],
+  taking: ['CSE 113', 'CSE 214', 'AMS 210'],
+  learning: ['JavaScript', 'Chrome extension development', 'Data structures'],
 };

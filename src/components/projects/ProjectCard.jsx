@@ -1,26 +1,40 @@
-import Card from '../ui/Card.jsx';
 import { TagList } from '../ui/Tag.jsx';
-import ProjectImage from './ProjectImage.jsx';
+import { ArrowIcon } from '../ui/icons.jsx';
 import ProjectStatus from './ProjectStatus.jsx';
 import ProjectLinks from './ProjectLinks.jsx';
+import { getPrimaryLink, projectAnchor } from '../../lib/projects.js';
 import { formatDate } from '../../lib/dates.js';
 import './ProjectCard.css';
 
-// Summary view of a project. A future detail page reuses ProjectImage,
-// ProjectStatus, ProjectLinks and TagList with the same project object.
+// Compact card for non-featured projects. The whole card links to the
+// project's primary destination (GitHub now, its own page later).
 export default function ProjectCard({ project }) {
-  const meta = [project.context, formatDate(project.date)].filter(Boolean).join(' · ');
+  const primary = getPrimaryLink(project);
+  // When the card's link is the same as its visible Code/Demo link, keyboard and
+  // screen-reader users get that link once; the card-wide click is for the mouse.
+  const duplicate = primary && [project.github, project.demo].includes(primary.href);
+  const meta = [project.label, formatDate(project.date)].filter(Boolean).join(' · ');
 
   return (
-    <Card as="article" className={`project-card ${project.featured ? 'project-card--featured' : ''}`}>
-      <ProjectImage project={project} className="project-card__image" />
-
+    <article id={projectAnchor(project.slug)} className={`project-card ${primary ? 'project-card--linked' : ''}`}>
       <header className="project-card__header">
-        <h3 className="project-card__title">{project.title}</h3>
+        {meta && <p className="project-card__meta">{meta}</p>}
         <ProjectStatus status={project.status} />
       </header>
 
-      {meta && <p className="project-card__meta">{meta}</p>}
+      <h3 className="project-card__title">
+        {project.title}
+        {primary && <ArrowIcon className="project-card__arrow" />}
+      </h3>
+      {primary && (
+        <a
+          className="project-card__overlay"
+          href={primary.href}
+          {...(primary.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          {...(duplicate ? { tabIndex: -1, 'aria-hidden': true } : { 'aria-label': `${project.title} details` })}
+        />
+      )}
+
       <p className="project-card__summary">{project.summary}</p>
 
       {project.highlights.length > 0 && (
@@ -35,6 +49,6 @@ export default function ProjectCard({ project }) {
         <TagList items={project.tech} label={`${project.title} technologies`} />
         <ProjectLinks project={project} />
       </footer>
-    </Card>
+    </article>
   );
 }

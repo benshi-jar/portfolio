@@ -1,6 +1,7 @@
 // Schools, newest first. Add a course each semester:
-//   { name: 'Data Structures', code: 'CSE 214', term: 'Fall 2026' }
-// code, term, notes and gpa are optional.
+//   { code: 'CSE 214', name: 'Data Structures', term: 'Fall 2026' }
+// Use the official course name. code, term, notes and gpa are optional.
+// Courses listed in currently.js `taking` are looked up here by code.
 
 export const education = [
   {
@@ -12,10 +13,10 @@ export const education = [
     end: '2030',
     expected: true,
     courses: [
-      { name: 'Data Structures', code: 'CSE 214' },
-      { name: 'Mathematical Foundations of CS' },
-      { name: 'Linear Algebra' },
-      { name: 'Human Knowledge' },
+      { code: 'CSE 113', name: 'Foundations of Computer Science I', term: 'Fall 2026' },
+      { code: 'CSE 214', name: 'Data Structures', term: 'Fall 2026' },
+      { code: 'AMS 210', name: 'Applied Linear Algebra', term: 'Fall 2026' },
+      { name: 'Human Knowledge', term: 'Fall 2026' },
     ],
   },
   {

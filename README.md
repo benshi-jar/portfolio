@@ -17,7 +17,7 @@ Requires Node 20.19+ or 22.12+.
 
 | To change… | Edit |
 |---|---|
-| Name, tagline, bio, email, links | `src/data/profile.js` |
+| Name, tagline, bio, email, links, the hero status line | `src/data/profile.js` (`role` and `status` fill the hero's status panel) |
 | Projects | `src/data/projects.js` |
 | Jobs and leadership roles | `src/data/experience.js` |
 | Schools and coursework | `src/data/education.js` |
@@ -25,6 +25,12 @@ Requires Node 20.19+ or 22.12+.
 | The "Currently" panel | `src/data/currently.js` |
 | Section order, hiding a section | `src/data/sections.js` |
 | Resume PDF | replace `public/resume.pdf` and update `profile.resume.updated` |
+
+## Motion and accessibility
+
+Animations run once (the `$ whoami` typing, the hero fade-in and the scroll reveals) and are switched off when the visitor's system asks for reduced motion. Every hover effect also appears on keyboard focus.
+
+## Checking your edits
 
 While `npm run dev` is running, the browser console warns about data mistakes such as a missing title, a duplicate slug, a bad date or an unknown status. These checks aren't included in the production build.
 
@@ -38,20 +44,27 @@ Dates are written as `'YYYY'` or `'YYYY-MM'`. An `end` of `null` means "Present"
 
 | Field | Example | Notes |
 |---|---|---|
+| `tagline` | `'Investigate claims, not verdicts.'` | one-line pitch on featured cards |
 | `highlights` | `['Built X', 'Solved Y']` | bullet points on the card |
-| `context` | `'CSE 214'`, `'Personal Project'` | small label under the title |
+| `category` | `'personal'`, `'coursework'` | powers the Personal / Coursework filters |
+| `course` | `'CSE 214'` | label for coursework projects |
+| `context` | `'Hackathon'` | overrides the label above the title |
+| `languages` | `['Java']` | filter chips; worked out from `tech` if left out |
 | `status` | `'complete'`, `'in-progress'`, `'archived'` | colored status dot |
-| `featured` | `true` | featured projects are listed first |
+| `featured` | `true` | large card at the top of Projects |
 | `date` | `'2026-10'` | |
-| `image` / `imageAlt` | `'/images/projects/my-project.png'` | put the file in `public/images/projects/` |
-| `github` | `'https://github.com/benshi-jar/my-project'` | shows a "Code" link |
+| `images` | `[{ src, alt, caption }]` | put files in `public/images/projects/`; the first is the card image. Without one, featured cards show a placeholder frame |
+| `github` | `'https://github.com/benshi-jar/my-project'` | shows a "Code" link; the whole card links here |
 | `demo` | `'https://my-project.vercel.app'` | shows a "Live demo" link |
-| `details` | `{ overview, sections: [{ heading, body }] }` | longer write-up for a future detail page |
+| `details` | `{ overview, architecture, sections, challenges, lessons }` | longer write-up for a future detail page |
+
+Filter chips are built from the data. A chip only appears when it narrows the list, so Python shows up on its own once a second language does.
 
 ### Adding other things
 
 - **A job or role:** add an object to `experience.js` with `kind: 'work'` or `'leadership'`. For seasonal roles, use `periods: [{ start, end }, …]`.
-- **A course:** add `{ name, code?, term? }` to a school's `courses` array in `education.js`.
+- **A course:** add `{ name, code?, term? }` to a school's `courses` array in `education.js`. Use the official course name.
+- **Currently:** `building` lists project slugs, `taking` lists course codes from `education.js`, and `learning` is short labels. Titles, status and course names are looked up, so they never disagree with the rest of the page.
 - **A skill:** add a string to a group in `skills.js`, or add a new group.
 
 ## Structure
@@ -65,9 +78,10 @@ src/
     validateData.js     dev-only data checks
   components/
     layout/             Nav, Section, Footer
-    ui/                 Card, Tag/TagList, LinkButton, ExternalLink, Timeline, icons
-    projects/           ProjectCard, ProjectImage, ProjectStatus, ProjectLinks
-    items/              ExperienceItem, EducationItem, SkillGroup, CurrentlyItem
+    ui/                 Card, Tag/TagList, LinkButton, ExternalLink, CopyButton, Reveal, TypedText, icons
+    projects/           FeaturedProject, ProjectCard, ProjectMedia, ProjectFilters, ProjectStatus, ProjectLinks
+    items/              ExperienceItem, EducationItem, SkillGroup
+  hooks/                useInView (scroll reveals), usePrefersReducedMotion
   sections/             one component per page section
   styles/
     tokens.css          colors, type, spacing; change the look here
@@ -81,13 +95,14 @@ The site is already set up for this:
 
 - Every project has a unique `slug`, and `getProjectPath(slug)` already returns `/projects/<slug>`.
 - `getProjectBySlug(slug)` returns one project with every optional field filled in.
-- `ProjectImage`, `ProjectStatus`, `ProjectLinks` and `TagList` each take a project as input, so a detail page can reuse them as they are.
-- The optional `details` field holds the longer write-up.
+- `ProjectMedia`, `ProjectStatus`, `ProjectLinks` and `TagList` each take a project as input, so a detail page can reuse them as they are.
+- The optional `details` field holds the longer write-up, and `images` can hold more than one screenshot.
+- Cards link through `getPrimaryLink(project)`, which already prefers the detail page once `hasDetailPage(project)` is true.
 
 When it's time, the steps are:
 
 1. Add a router, or a small hash-based switch in `App.jsx`.
 2. Create `src/pages/ProjectDetail.jsx` using the helpers and components above.
-3. In `ProjectCard`, link the title to `getProjectPath(project.slug)` when `hasDetailPage(project)` is true.
+3. Set `DETAIL_PAGES_ENABLED` to `true` in `lib/projects.js`. Cards for projects with `details` then link to their new page automatically.
 
 No data or existing components have to change.

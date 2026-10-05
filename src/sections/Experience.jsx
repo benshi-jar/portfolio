@@ -1,5 +1,5 @@
 import Section from '../components/layout/Section.jsx';
-import Timeline from '../components/ui/Timeline.jsx';
+import Reveal from '../components/ui/Reveal.jsx';
 import ExperienceItem from '../components/items/ExperienceItem.jsx';
 import { experience } from '../data/experience.js';
 import { dateKey } from '../lib/dates.js';
@@ -16,9 +16,9 @@ function latestEnd(item) {
   return Math.max(...periods.map((p) => (p.end ? dateKey(p.end) : Infinity)));
 }
 
-export default function Experience() {
+export default function Experience({ tone }) {
   return (
-    <Section id="experience" title="Experience">
+    <Section id="experience" title="Experience" tone={tone}>
       <div className="experience-groups">
         {GROUPS.map(({ kind, label }) => {
           const items = experience
@@ -27,14 +27,14 @@ export default function Experience() {
           if (!items.length) return null;
           return (
             <div key={kind} className="experience-group">
-              <h3 className="experience-group__title">{label}</h3>
-              <Timeline label={label}>
-                {items.map((item) => (
-                  <li key={item.id}>
+              <h3 className="eyebrow experience-group__title">{label}</h3>
+              <ol className="entry-list" aria-label={label}>
+                {items.map((item, i) => (
+                  <Reveal as="li" key={item.id} delay={i * 50}>
                     <ExperienceItem item={item} />
-                  </li>
+                  </Reveal>
                 ))}
-              </Timeline>
+              </ol>
             </div>
           );
         })}

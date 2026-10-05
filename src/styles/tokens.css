@@ -3,6 +3,7 @@
 
   /* Color */
   --color-bg: #0e1013;
+  --color-bg-alt: #111418;
   --color-surface: #15181d;
   --color-surface-raised: #1b1f25;
   --color-border: #262b33;
@@ -13,7 +14,9 @@
   --color-accent: #6cc4b0;
   --color-accent-strong: #8fd6c5;
   --color-accent-soft: rgba(108, 196, 176, 0.12);
+  --color-accent-line: rgba(108, 196, 176, 0.45);
   --color-warn: #d9b36c;
+  --color-dot: rgba(154, 162, 173, 0.16);
 
   /* Type */
   --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -23,7 +26,8 @@
   --text-base: 1rem;
   --text-md: 1.125rem;
   --text-lg: 1.375rem;
-  --text-xl: clamp(1.875rem, 1.5rem + 1.5vw, 2.5rem);
+  --text-section: clamp(1.5rem, 1.3rem + 0.8vw, 1.75rem);
+  --text-xl: clamp(2.25rem, 1.6rem + 2.4vw, 3rem);
   --leading: 1.6;
 
   /* Space */
@@ -35,12 +39,18 @@
   --space-6: 2rem;
   --space-7: 3rem;
   --space-8: 5rem;
+  --space-9: 7rem;
 
   /* Shape */
   --radius-sm: 4px;
   --radius: 8px;
-  --container: 52rem;
+  --radius-lg: 12px;
+  --container: 70rem;
+  --measure: 40rem;
   --nav-height: 3.5rem;
 
-  --transition: 150ms ease;
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --transition: 160ms var(--ease-out);
+  --reveal-duration: 520ms;
 }

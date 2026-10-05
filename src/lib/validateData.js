@@ -3,7 +3,8 @@
 import { projects } from '../data/projects.js';
 import { experience } from '../data/experience.js';
 import { education } from '../data/education.js';
-import { PROJECT_STATUS } from './projects.js';
+import { currently } from '../data/currently.js';
+import { PROJECT_STATUS, PROJECT_CATEGORIES } from './projects.js';
 
 const DATE = /^\d{4}(-(0[1-9]|1[0-2]))?$/;
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -22,7 +23,13 @@ export function validateData() {
     slugs.add(p.slug);
     if (p.status && !(p.status in PROJECT_STATUS))
       warn(where, `status should be one of ${Object.keys(PROJECT_STATUS).join(', ')}`);
+    if (p.category && !(p.category in PROJECT_CATEGORIES))
+      warn(where, `category should be one of ${Object.keys(PROJECT_CATEGORIES).join(', ')}`);
     if (p.date && !DATE.test(p.date)) warn(where, 'date should be "YYYY" or "YYYY-MM"');
+    (p.images ?? []).forEach((img, j) => {
+      if (!img.src) warn(where, `images[${j}] is missing "src"`);
+      if (!img.alt) warn(where, `images[${j}] needs "alt" text describing it`);
+    });
     if (p.image && !p.imageAlt) warn(where, 'add "imageAlt" to describe the image');
   });
 
@@ -36,6 +43,14 @@ export function validateData() {
 
   education.forEach((e, i) => {
     if (!e.school) warn(`education[${i}]`, 'missing "school"');
+  });
+
+  const courseCodes = new Set(education.flatMap((e) => (e.courses ?? []).map((c) => c.code)));
+  (currently.building ?? []).forEach((b) => {
+    if (!slugs.has(b.project)) warn('currently.building', `no project with slug "${b.project}"`);
+  });
+  (currently.taking ?? []).forEach((code) => {
+    if (!courseCodes.has(code)) warn('currently.taking', `"${code}" isn't listed in education.js`);
   });
 
   if (problems.length) {

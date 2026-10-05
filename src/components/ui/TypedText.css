@@ -1,0 +1,34 @@
+.typed__caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 0.15em;
+  vertical-align: -0.15em;
+  background: var(--color-accent);
+  animation: caret-blink 1s steps(1) infinite;
+}
+
+/* After typing, the caret blinks twice more, then fades out for good. */
+.typed__caret--done {
+  animation:
+    caret-blink 1s steps(1) 2,
+    caret-out 300ms ease 2s forwards;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes caret-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typed__caret {
+    display: none;
+  }
+}

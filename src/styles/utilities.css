@@ -11,6 +11,10 @@
   }
 }
 
+.measure {
+  max-width: var(--measure);
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -41,4 +45,36 @@
 
 .muted {
   color: var(--color-text-muted);
+}
+
+/* Small uppercase monospace label used above groups. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-faint);
+}
+
+/* Scroll reveal (see components/ui/Reveal.jsx). Plays once per element. */
+.reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity var(--reveal-duration) var(--ease-out),
+    transform var(--reveal-duration) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }

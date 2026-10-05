@@ -1,0 +1,56 @@
+.project-filters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  overflow-x: auto;
+  scrollbar-width: none;
+  max-width: 100%;
+}
+
+.project-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.project-filters__label {
+  color: var(--color-text-faint);
+  margin-right: var(--space-1);
+}
+
+.project-filters__option {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35em;
+  min-height: 2rem;
+  padding: var(--space-1) var(--space-2);
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  transition:
+    color var(--transition),
+    background-color var(--transition);
+}
+
+/* Inset ring: the scrolling row would clip an outline drawn outside the button. */
+.project-filters__option:focus-visible {
+  outline-offset: -2px;
+}
+
+.project-filters__option:hover {
+  color: var(--color-text);
+}
+
+.project-filters__option[aria-pressed='true'] {
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.project-filters__count {
+  color: var(--color-text-faint);
+}
+
+.project-filters__option[aria-pressed='true'] .project-filters__count {
+  color: inherit;
+  opacity: 0.7;
+}

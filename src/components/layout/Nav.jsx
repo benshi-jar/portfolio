@@ -24,9 +24,21 @@ function useActiveSection(ids) {
   return active;
 }
 
+function useScrolledPast(offset) {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > offset);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [offset]);
+  return scrolled;
+}
+
 export default function Nav({ sections }) {
   const [open, setOpen] = useState(false);
   const active = useActiveSection(sections.map((s) => s.id));
+  const scrolled = useScrolledPast(24);
   const navItems = sections.filter((s) => s.inNav !== false);
 
   useEffect(() => {
@@ -37,7 +49,7 @@ export default function Nav({ sections }) {
   }, [open]);
 
   return (
-    <header className="nav">
+    <header className={`nav ${scrolled || open ? 'nav--scrolled' : ''}`}>
       <div className="container nav__inner">
         <a href="#home" className="nav__brand" onClick={() => setOpen(false)}>
           <span className="nav__prompt" aria-hidden="true">~/</span>

@@ -23,3 +23,23 @@
 .project-status--in-progress::before {
   background: var(--color-warn);
 }
+
+.project-status--pulse.project-status--in-progress::before {
+  animation: status-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(217, 179, 108, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(217, 179, 108, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-status--pulse.project-status--in-progress::before {
+    animation: none;
+  }
+}

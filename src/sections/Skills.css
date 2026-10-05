@@ -1,0 +1,16 @@
+.skills-grid {
+  display: grid;
+  gap: var(--space-6) var(--space-5);
+}
+
+@media (min-width: 560px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .skills-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

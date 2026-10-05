@@ -8,32 +8,32 @@ export default function EducationItem({ item }) {
 
   return (
     <article className="entry">
-      <header className="entry__header">
+      <div className="entry__when">
+        <span>{dates}</span>
+        {item.location && <span className="entry__where">{item.location}</span>}
+      </div>
+      <div className="entry__body">
         <h3 className="entry__title">{item.school}</h3>
-        {item.detail && <p className="entry__detail">{item.detail}</p>}
-        <p className="entry__meta">
-          <span>{dates}</span>
-          {item.location && <span>{item.location}</span>}
-          {item.gpa && <span>GPA {item.gpa}</span>}
-        </p>
-      </header>
+        {(item.detail || item.gpa) && (
+          <p className="entry__detail">{[item.detail, item.gpa && `GPA ${item.gpa}`].filter(Boolean).join(' · ')}</p>
+        )}
+        {item.notes && <p className="entry__notes">{item.notes}</p>}
 
-      {item.notes && <p className="entry__notes">{item.notes}</p>}
-
-      {item.courses?.length > 0 && (
-        <div className="entry__courses">
-          <h4 className="entry__subheading">Coursework</h4>
-          <ul className="course-list">
-            {item.courses.map((course) => (
-              <li key={course.code ?? course.name} className="course">
-                {course.code && <span className="course__code">{course.code}</span>}
-                <span>{course.name}</span>
-                {course.term && <span className="course__term">{course.term}</span>}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+        {item.courses?.length > 0 && (
+          <div className="entry__courses">
+            <h4 className="eyebrow entry__subheading">Coursework</h4>
+            <ul className="course-list">
+              {item.courses.map((course) => (
+                <li key={course.code ?? course.name} className="course">
+                  <span className="course__code">{course.code ?? '—'}</span>
+                  <span>{course.name}</span>
+                  {course.term && <span className="course__term">{course.term}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </article>
   );
 }

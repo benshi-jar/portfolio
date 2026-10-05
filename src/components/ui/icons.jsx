@@ -79,3 +79,28 @@ export function CloseIcon(props) {
     </svg>
   );
 }
+
+export function ArrowIcon(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  );
+}
+
+export function CopyIcon(props) {
+  return (
+    <svg {...base} width={14} height={14} {...props}>
+      <rect x="9" y="9" width="13" height="13" rx="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+  );
+}
+
+export function CheckIcon(props) {
+  return (
+    <svg {...base} width={14} height={14} {...props}>
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+}

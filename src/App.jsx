@@ -35,9 +35,10 @@ export default function App() {
       </a>
       <Nav sections={enabledSections} />
       <main id="main">
-        {enabledSections.map(({ id }) => {
+        {enabledSections.map(({ id }, index) => {
           const Component = SECTION_COMPONENTS[id];
-          return <Component key={id} />;
+          // Every other section after the hero gets a slightly different background band.
+          return <Component key={id} tone={index % 2 === 0 ? 'alt' : undefined} />;
         })}
       </main>
       <Footer />
