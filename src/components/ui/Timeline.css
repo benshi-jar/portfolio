@@ -1,0 +1,33 @@
+.timeline {
+  list-style: none;
+  padding: 0;
+  border-left: 1px solid var(--color-border);
+  margin-left: 0.3rem;
+}
+
+.timeline > li {
+  position: relative;
+  padding-left: var(--space-5);
+  padding-bottom: var(--space-6);
+}
+
+.timeline > li:last-child {
+  padding-bottom: 0;
+}
+
+.timeline > li::before {
+  content: '';
+  position: absolute;
+  left: -0.3rem;
+  top: 0.55rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 1px solid var(--color-text-faint);
+}
+
+.timeline > li:first-child::before {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+}

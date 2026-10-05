@@ -1,0 +1,23 @@
+.currently-item {
+  display: grid;
+  gap: var(--space-1);
+  padding-block: var(--space-3);
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.currently-item:last-child {
+  border-bottom: none;
+}
+
+.currently-item__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+}
+
+@media (min-width: 640px) {
+  .currently-item {
+    grid-template-columns: 8rem 1fr;
+    gap: var(--space-4);
+  }
+}

@@ -1,0 +1,26 @@
+.contact-list {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.contact-list__item {
+  display: grid;
+  gap: var(--space-1);
+  overflow-wrap: anywhere;
+}
+
+.contact-list__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-text-faint);
+}
+
+@media (min-width: 640px) {
+  .contact-list__item {
+    grid-template-columns: 8rem 1fr;
+    gap: var(--space-4);
+  }
+}

@@ -1,0 +1,14 @@
+.experience-groups {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.experience-group__title {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-faint);
+  margin-bottom: var(--space-4);
+}
