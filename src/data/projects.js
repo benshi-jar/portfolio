@@ -55,7 +55,7 @@ export const projects = [
   {
     slug: 'practice-ledger',
     title: 'Practice Ledger',
-    tagline: 'A desktop log for deliberate coding practice.',
+    tagline: 'Track coding practice with structured sessions and persistent data.',
     summary:
       'A desktop tracker for coding sessions with filtering, sorting, editing, and total-time and longest-session analytics.',
     highlights: [
