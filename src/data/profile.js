@@ -18,7 +18,7 @@ export const profile = {
 
   links: {
     github: 'https://github.com/benshi-jar',
-    linkedin: 'https://www.linkedin.com/in/assaf-ben-shimon-26b97426b',
+    linkedin: 'https://www.linkedin.com/in/assafbs',
   },
 
   extraLinks: [],
