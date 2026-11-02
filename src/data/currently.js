@@ -7,6 +7,6 @@
 export const currently = {
   updated: '2026-10',
   building: [{ project: 'claim-investigator', note: 'A Chrome extension for investigating claims with real evidence' }],
-  taking: ['CSE 113', 'CSE 214', 'AMS 210'],
+  taking: ['CSE 113', 'CSE 214', 'AMS 210', 'HON 105'],
   learning: ['JavaScript', 'Chrome extension development', 'Data structures'],
 };

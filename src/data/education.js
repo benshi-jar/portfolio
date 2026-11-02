@@ -10,13 +10,13 @@ export const education = [
     detail: 'Honors College · B.S. Computer Science',
     location: 'Stony Brook, NY',
     start: '2026',
-    end: '2030',
+    end: '2029-05',
     expected: true,
     courses: [
       { code: 'CSE 113', name: 'Foundations of Computer Science I', term: 'Fall 2026' },
       { code: 'CSE 214', name: 'Data Structures', term: 'Fall 2026' },
       { code: 'AMS 210', name: 'Applied Linear Algebra', term: 'Fall 2026' },
-      { name: 'Human Knowledge', term: 'Fall 2026' },
+      { code: 'HON 105', name: 'Exploration of Human Knowledge', term: 'Fall 2026' },
     ],
   },
   {
