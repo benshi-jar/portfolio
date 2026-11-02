@@ -117,7 +117,7 @@ export const projects = [
   },
   {
     slug: 'playfair-cipher',
-    title: 'Playfair Cipher',
+    title: 'Playfair Cipher Engine',
     summary:
       'A command-line tool that encrypts and decrypts text with the Playfair cipher, processing messages as queues of letter pairs.',
     highlights: [
@@ -131,7 +131,7 @@ export const projects = [
   },
   {
     slug: 'food-pyramid',
-    title: 'Food Pyramid',
+    title: 'Food Pyramid Tree',
     summary:
       'An interactive ecological food pyramid modeled as a ternary tree, where each node is a species and its children are its prey.',
     highlights: [
