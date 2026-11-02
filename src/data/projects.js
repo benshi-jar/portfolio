@@ -115,4 +115,32 @@ export const projects = [
     course: 'CSE 214',
     status: 'complete',
   },
+  {
+    slug: 'playfair-cipher',
+    title: 'Playfair Cipher Engine',
+    summary:
+      'A command-line tool that encrypts and decrypts text with the Playfair cipher, processing messages as queues of letter pairs.',
+    highlights: [
+      'Builds a 5x5 key table from any key phrase',
+      'Custom queue class and JUnit 5 tests for encryption and decryption',
+    ],
+    tech: ['Java', 'Queue ADT', 'JUnit 5'],
+    category: 'coursework',
+    course: 'CSE 214',
+    status: 'complete',
+  },
+  {
+    slug: 'food-pyramid',
+    title: 'Food Pyramid Tree',
+    summary:
+      'An interactive ecological food pyramid modeled as a ternary tree, where each node is a species and its children are its prey.',
+    highlights: [
+      'Cursor-based navigation, food chains and plant listings',
+      'Diet rules enforced with custom exceptions, plus JUnit 5 tests',
+    ],
+    tech: ['Java', 'Ternary Trees', 'JUnit 5'],
+    category: 'coursework',
+    course: 'CSE 214',
+    status: 'complete',
+  },
 ];
